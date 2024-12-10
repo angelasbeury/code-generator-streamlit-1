@@ -65,8 +65,7 @@ if st.button("Generate Code"):
             if generated_code and "Error" not in generated_code:
                 st.session_state["generated_code"] = generated_code  # Store in session state
                 st.session_state["description"] = ""  # Clear the input field
-                st.write("### Generated Python Code")
-                st.code(generated_code, language="python")
+                st.experimental_rerun()  # Refresh app to reset description field
             else:
                 st.error("The model did not return any usable code. Try refining your description.")
     else:
