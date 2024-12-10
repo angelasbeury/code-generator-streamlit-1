@@ -48,22 +48,20 @@ st.write("Enter a description of the Python application or code you need. CodeLl
 # Initialize session state for inputs and outputs
 if "generated_code" not in st.session_state:
     st.session_state["generated_code"] = ""
-if "description" not in st.session_state:
-    st.session_state["description"] = ""
 
 # Input box for the user to enter a description
 description = st.text_area(
-    "Application or Code Description", 
-    placeholder="Describe the application or code you want", 
+    "Application or Code Description",
+    placeholder="Describe the application or code you want",
     key="description"
 )
 
 # Button to trigger code generation
 if st.button("Generate Code"):
-    if description.strip():
+    if st.session_state["description"].strip():  # Use session_state directly
         with st.spinner("Generating Python code..."):
             # Generate code
-            generated_code = generate_code_with_codellama(description)
+            generated_code = generate_code_with_codellama(st.session_state["description"])
             if generated_code and "Error" not in generated_code:
                 st.session_state["generated_code"] = generated_code  # Store in session state
                 st.session_state["description"] = ""  # Clear the input field
