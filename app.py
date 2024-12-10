@@ -42,7 +42,7 @@ def generate_code_with_codellama(description):
         return f"Error with CodeLlama: {e}"
 
 # Streamlit app layout
-st.title("Python Assist")
+st.title("🐍 Python Assist")
 st.write("Enter a description of the Python code you need. CodeLlama will generate the corresponding Python code.")
 
 # Input box for the user to enter a description
