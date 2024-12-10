@@ -46,7 +46,7 @@ st.title("Python Assist")
 st.write("Enter a description of the Python code you need. CodeLlama will generate the corresponding Python code.")
 
 # Input box for the user to enter a description
-description = st.text_area("Application or Code Description", placeholder="Describe the code you want")
+description = st.text_area("Code Description", placeholder="Describe the code you want")
 
 # Store generated code in session state
 if "generated_code" not in st.session_state:
