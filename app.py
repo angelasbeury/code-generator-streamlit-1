@@ -45,12 +45,18 @@ def generate_code_with_codellama(description):
 st.title("Python Code Generator with CodeLlama")
 st.write("Enter a description of the Python application or code you need. CodeLlama will generate the corresponding Python code.")
 
-# Input box for the user to enter a description
-description = st.text_area("Application or Code Description", placeholder="Describe the application or code you want")
-
-# Store generated code in session state
+# Initialize session state for inputs and outputs
 if "generated_code" not in st.session_state:
     st.session_state["generated_code"] = ""
+if "description" not in st.session_state:
+    st.session_state["description"] = ""
+
+# Input box for the user to enter a description
+description = st.text_area(
+    "Application or Code Description", 
+    placeholder="Describe the application or code you want", 
+    key="description"
+)
 
 # Button to trigger code generation
 if st.button("Generate Code"):
@@ -60,6 +66,7 @@ if st.button("Generate Code"):
             generated_code = generate_code_with_codellama(description)
             if generated_code and "Error" not in generated_code:
                 st.session_state["generated_code"] = generated_code  # Store in session state
+                st.session_state["description"] = ""  # Clear the input field
                 st.write("### Generated Python Code")
                 st.code(generated_code, language="python")
             else:
